@@ -14,7 +14,7 @@ export default function DashboardPage() {
         <div className="container mx-auto flex h-16 items-center space-x-4 px-4 sm:justify-between sm:space-x-0">
           <div className="flex gap-2 items-center">
             <Waves className="h-8 w-8 text-primary" />
-            <h1 className="text-2xl font-bold text-foreground">AquaGuard</h1>
+            <h1 className="text-2xl font-bold text-foreground">Flood Risk</h1>
           </div>
         </div>
       </header>

@@ -39,7 +39,7 @@ export const MapComponent = () => {
   return (
     <APIProvider apiKey={API_KEY}>
       <Map
-        mapId="aquaguard-map"
+        mapId="flood-risk-map"
         defaultCenter={{ lat: 29.9511, lng: -90.0715 }}
         defaultZoom={10}
         gestureHandling={'greedy'}
