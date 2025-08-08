@@ -12,7 +12,10 @@ export default function LandingPage() {
         <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
           Your guide to flood safety and resilient construction.
         </p>
-        <Link href="/dashboard" className="text-primary text-lg font-semibold hover:underline">
+        <Link 
+          href="/dashboard" 
+          className="inline-block px-8 py-3 rounded-lg bg-secondary text-secondary-foreground text-lg font-semibold shadow-md transition-colors duration-200 hover:bg-muted active:bg-card active:text-card-foreground"
+        >
           Enter
         </Link>
       </div>
