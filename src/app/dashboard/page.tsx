@@ -1,4 +1,4 @@
-import { Waves, Building, ShieldCheck, MapPin, Cloudy, AlertTriangle, BookOpen, Sun, CloudRain } from "lucide-react";
+import { Building, ShieldCheck, MapPin, Cloudy, AlertTriangle, BookOpen, Sun, CloudRain } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { FloodRiskAssessment } from "@/components/flood-risk-assessment";
 import { ConstructionAdvisory } from "@/components/construction-advisory";
@@ -13,7 +13,7 @@ export default function DashboardPage() {
       <header className="sticky top-0 z-40 w-full border-b bg-card/80 backdrop-blur-sm">
         <div className="container mx-auto flex h-16 items-center space-x-4 px-4 sm:justify-between sm:space-x-0">
           <div className="flex gap-2 items-center">
-            <Waves className="h-8 w-8 text-primary" />
+            <span className="text-3xl">🌊</span>
             <h1 className="text-2xl font-bold text-foreground">Flood Risk</h1>
           </div>
         </div>

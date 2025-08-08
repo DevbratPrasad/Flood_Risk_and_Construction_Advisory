@@ -1,11 +1,10 @@
 import Link from 'next/link';
-import { Waves } from 'lucide-react';
 
 export default function LandingPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground">
       <div className="text-center p-4">
-        <Waves className="h-16 w-16 text-primary mx-auto mb-4" />
+        <span className="text-6xl mx-auto mb-4">🌊</span>
         <h1 className="text-4xl md:text-5xl font-bold mb-2">
           Flood Risk & Construction Advisory
         </h1>
