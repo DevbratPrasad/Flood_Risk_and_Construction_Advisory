@@ -6,8 +6,8 @@ export default function LandingPage() {
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen bg-background text-foreground">
       <Image
-        src="https://placehold.co/1920x1080.png"
-        alt="Flood statue"
+        src="https://storage.googleapis.com/aifirebase/images/CE0i_gdYRU67S94X5n8u"
+        alt="A statue of praying hands emerging from a flooded river, framed by architectural arches."
         data-ai-hint="flood statue"
         layout="fill"
         objectFit="cover"
