@@ -43,8 +43,8 @@ export function FloodRiskAssessment() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       address: "",
-      latitude: undefined,
-      longitude: undefined,
+      latitude: "" as any,
+      longitude: "" as any,
     },
   });
 
