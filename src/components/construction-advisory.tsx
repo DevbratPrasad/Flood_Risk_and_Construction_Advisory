@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -19,7 +20,7 @@ const formSchema = z.object({
   location: z.string().min(2, { message: "Location must be at least 2 characters." }),
   floodRiskLevel: z.enum(["low", "medium", "high"]),
   houseType: z.string().min(3, { message: "House type must be at least 3 characters." }),
-  budget: z.string().min(3, { message: "Budget must be at least 3 characters." }),
+  budget: z.enum(["low", "medium", "high"]),
 });
 
 export function ConstructionAdvisory() {
@@ -33,7 +34,7 @@ export function ConstructionAdvisory() {
       location: "",
       floodRiskLevel: "medium",
       houseType: "",
-      budget: "",
+      budget: "medium",
     },
   });
 
@@ -121,9 +122,18 @@ export function ConstructionAdvisory() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Budget</FormLabel>
-                  <FormControl>
-                    <Input placeholder="e.g., Moderate, ₹1,50,00,000" {...field} />
-                  </FormControl>
+                   <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a budget range" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="low">Low (&lt; ₹50,00,000)</SelectItem>
+                      <SelectItem value="medium">Medium (₹50,00,000 - ₹1,50,00,000)</SelectItem>
+                      <SelectItem value="high">High (&gt; ₹1,50,00,000)</SelectItem>
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}
