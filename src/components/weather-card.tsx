@@ -1,13 +1,45 @@
+
 "use client";
 
 import * as React from 'react';
 import { Cloudy, Sun, CloudRain } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from './ui/separator';
 
 const weatherConditions = [
-    { icon: <Sun className="w-12 h-12 text-yellow-400" />, temp: "28°C", condition: "Sunny" },
-    { icon: <Cloudy className="w-12 h-12 text-gray-400" />, temp: "24°C", condition: "Cloudy" },
-    { icon: <CloudRain className="w-12 h-12 text-blue-400" />, temp: "20°C", condition: "Rainy" },
+    { 
+        icon: <Sun className="w-12 h-12 text-yellow-400" />, 
+        temp: "28°C", 
+        condition: "Sunny",
+        hourly: [
+            { time: "1 PM", icon: <Sun className="w-8 h-8 text-yellow-400" />, temp: "29°C" },
+            { time: "2 PM", icon: <Sun className="w-8 h-8 text-yellow-400" />, temp: "30°C" },
+            { time: "3 PM", icon: <Cloudy className="w-8 h-8 text-gray-400" />, temp: "28°C" },
+            { time: "4 PM", icon: <Cloudy className="w-8 h-8 text-gray-400" />, temp: "27°C" },
+        ]
+    },
+    { 
+        icon: <Cloudy className="w-12 h-12 text-gray-400" />, 
+        temp: "24°C", 
+        condition: "Cloudy",
+        hourly: [
+            { time: "1 PM", icon: <Cloudy className="w-8 h-8 text-gray-400" />, temp: "25°C" },
+            { time: "2 PM", icon: <Cloudy className="w-8 h-8 text-gray-400" />, temp: "25°C" },
+            { time: "3 PM", icon: <CloudRain className="w-8 h-8 text-blue-400" />, temp: "23°C" },
+            { time: "4 PM", icon: <CloudRain className="w-8 h-8 text-blue-400" />, temp: "22°C" },
+        ] 
+    },
+    { 
+        icon: <CloudRain className="w-12 h-12 text-blue-400" />, 
+        temp: "20°C", 
+        condition: "Rainy",
+        hourly: [
+            { time: "1 PM", icon: <CloudRain className="w-8 h-8 text-blue-400" />, temp: "21°C" },
+            { time: "2 PM", icon: <CloudRain className="w-8 h-8 text-blue-400" />, temp: "21°C" },
+            { time: "3 PM", icon: <CloudRain className="w-8 h-8 text-blue-400" />, temp: "20°C" },
+            { time: "4 PM", icon: <Cloudy className="w-8 h-8 text-gray-400" />, temp: "22°C" },
+        ]
+    },
 ];
 
 export function WeatherCard() {
@@ -27,6 +59,7 @@ export function WeatherCard() {
     return () => clearInterval(interval);
   }, []);
 
+  const displayWeather = isClient ? currentWeather : weatherConditions[0];
 
   return (
     <Card className="border-primary/50 bg-primary/5 transition-transform duration-200 hover:scale-105 hover:shadow-lg">
@@ -35,16 +68,29 @@ export function WeatherCard() {
           <Cloudy />
           Weather
         </CardTitle>
-        <CardDescription>Current weather conditions</CardDescription>
+        <CardDescription>Current weather conditions and hourly forecast</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="space-y-6">
         <div className="flex items-center justify-between gap-4">
             <div className="flex flex-col">
-                <span className="text-4xl font-bold">{isClient ? currentWeather.temp : weatherConditions[0].temp}</span>
-                <span className="text-muted-foreground">{isClient ? currentWeather.condition : weatherConditions[0].condition}</span>
+                <span className="text-4xl font-bold">{displayWeather.temp}</span>
+                <span className="text-muted-foreground">{displayWeather.condition}</span>
             </div>
             <div>
-                {isClient ? currentWeather.icon : weatherConditions[0].icon}
+                {displayWeather.icon}
+            </div>
+        </div>
+        <Separator />
+        <div>
+            <h4 className="text-sm font-semibold text-muted-foreground mb-4">Hourly Forecast</h4>
+            <div className="flex justify-between gap-2">
+                {displayWeather.hourly.map((hour, index) => (
+                    <div key={index} className="flex flex-col items-center gap-1 text-center">
+                        <span className="text-xs text-muted-foreground">{hour.time}</span>
+                        {hour.icon}
+                        <span className="text-sm font-semibold">{hour.temp}</span>
+                    </div>
+                ))}
             </div>
         </div>
       </CardContent>
