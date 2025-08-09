@@ -43,23 +43,19 @@ const weatherConditions = [
 ];
 
 export function WeatherCard() {
-  const [currentWeather, setCurrentWeather] = React.useState(weatherConditions[0]);
+  const [currentWeatherIndex, setCurrentWeatherIndex] = React.useState(0);
   const [isClient, setIsClient] = React.useState(false);
 
   React.useEffect(() => {
     setIsClient(true);
     const interval = setInterval(() => {
-      setCurrentWeather(prev => {
-          const currentIndex = weatherConditions.findIndex(w => w.condition === prev.condition);
-          const nextIndex = (currentIndex + 1) % weatherConditions.length;
-          return weatherConditions[nextIndex];
-      });
+      setCurrentWeatherIndex(prev => (prev + 1) % weatherConditions.length);
     }, 5000); // Change weather every 5 seconds
 
     return () => clearInterval(interval);
   }, []);
 
-  const displayWeather = isClient ? currentWeather : weatherConditions[0];
+  const displayWeather = weatherConditions[currentWeatherIndex];
 
   return (
     <Card className="border-primary/50 bg-primary/5 transition-transform duration-200 hover:scale-105 hover:shadow-lg">
@@ -71,7 +67,7 @@ export function WeatherCard() {
         <CardDescription>Current weather conditions and hourly forecast</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-4 p-4 bg-card rounded-lg">
             <div className="flex flex-col">
                 <span className="text-4xl font-bold">{displayWeather.temp}</span>
                 <span className="text-muted-foreground">{displayWeather.condition}</span>
@@ -81,7 +77,7 @@ export function WeatherCard() {
             </div>
         </div>
         <Separator />
-        <div>
+        <div className="p-4 bg-card rounded-lg">
             <h4 className="text-sm font-semibold text-muted-foreground mb-4">Hourly Forecast</h4>
             <div className="flex justify-between gap-2">
                 {displayWeather.hourly.map((hour, index) => (
