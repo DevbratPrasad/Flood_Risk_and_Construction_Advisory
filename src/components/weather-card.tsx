@@ -67,7 +67,7 @@ export function WeatherCard() {
         <CardDescription>Current weather conditions and hourly forecast</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
-        <div className="flex items-center justify-between gap-4 p-4 bg-card rounded-lg">
+        <div className="flex items-center justify-between gap-4 p-4 bg-card rounded-lg transition-transform duration-200 hover:scale-105">
             <div className="flex flex-col">
                 <span className="text-4xl font-bold">{displayWeather.temp}</span>
                 <span className="text-muted-foreground">{displayWeather.condition}</span>
@@ -77,7 +77,7 @@ export function WeatherCard() {
             </div>
         </div>
         <Separator />
-        <div className="p-4 bg-card rounded-lg">
+        <div className="p-4 bg-card rounded-lg transition-transform duration-200 hover:scale-105">
             <h4 className="text-sm font-semibold text-muted-foreground mb-4">Hourly Forecast</h4>
             <div className="flex justify-between gap-2">
                 {displayWeather.hourly.map((hour, index) => (
