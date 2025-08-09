@@ -2,7 +2,7 @@
 "use client";
 
 import * as React from "react";
-import { Heart, ChevronDown, Search } from "lucide-react";
+import { BookOpen, ChevronDown, Search } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -68,32 +68,12 @@ export function EvacuationGuide() {
       prev.includes(id) ? prev.filter(s => s !== id) : [...prev, id]
     );
   };
-  
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const button = event.currentTarget;
-    const ripple = document.createElement("span");
-    const rect = button.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    const x = event.clientX - rect.left - size / 2;
-    const y = event.clientY - rect.top - size / 2;
-
-    ripple.style.width = ripple.style.height = `${size}px`;
-    ripple.style.left = `${x}px`;
-    ripple.style.top = `${y}px`;
-    ripple.className = 'ripple';
-
-    button.appendChild(ripple);
-
-    ripple.onanimationend = () => {
-      ripple.remove();
-    };
-  };
 
   return (
     <Card className="transition-transform duration-200 hover:scale-105 hover:shadow-lg">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Heart />
+          <BookOpen />
           Evacuation Protocol Guide
         </CardTitle>
         <CardDescription>Easy to understand guidelines on evacuation protocols for flood safety.</CardDescription>
@@ -109,8 +89,7 @@ export function EvacuationGuide() {
               <CollapsibleTrigger asChild>
                 <Button
                   variant="outline"
-                  onClick={handleClick}
-                  className="w-full justify-between text-lg font-semibold relative overflow-hidden transition-transform duration-200 hover:scale-105"
+                  className="w-full justify-between text-lg font-semibold"
                 >
                   {item.title}
                   <ChevronDown className={cn("h-5 w-5 transition-transform", openSections.includes(item.id) && "rotate-180")} />
