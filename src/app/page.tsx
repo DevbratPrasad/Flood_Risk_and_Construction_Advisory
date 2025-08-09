@@ -6,8 +6,8 @@ export default function LandingPage() {
     <div className="relative flex flex-col items-center justify-center min-h-screen bg-background text-foreground">
       <Image
         src="https://placehold.co/1920x1080.png"
-        alt="Ocean waves crashing on a shore"
-        data-ai-hint="ocean waves"
+        alt="Abstract background image"
+        data-ai-hint="abstract background"
         layout="fill"
         objectFit="cover"
         className="z-0"
