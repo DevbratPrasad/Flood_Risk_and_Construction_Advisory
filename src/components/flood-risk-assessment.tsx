@@ -30,8 +30,8 @@ import { Skeleton } from "./ui/skeleton";
 
 const formSchema = z.object({
   address: z.string().min(5, { message: "Address must be at least 5 characters." }),
-  latitude: z.coerce.number().min(-90).max(90),
-  longitude: z.coerce.number().min(-180).max(180),
+  latitude: z.string().min(1, { message: "Latitude is required." }),
+  longitude: z.string().min(1, { message: "Longitude is required." }),
 });
 
 export function FloodRiskAssessment() {
@@ -43,16 +43,38 @@ export function FloodRiskAssessment() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       address: "",
-      latitude: "" as any,
-      longitude: "" as any,
+      latitude: "",
+      longitude: "",
     },
   });
+
+  // Function to parse coordinates
+  const parseCoordinate = (coord: string): number => {
+    return parseFloat(coord);
+  };
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
     setResult(null);
     try {
-      const res = await assessFloodRisk(values);
+      const numericLatitude = parseCoordinate(values.latitude);
+      const numericLongitude = parseCoordinate(values.longitude);
+
+      if (isNaN(numericLatitude) || isNaN(numericLongitude)) {
+        toast({
+          title: "Invalid Coordinates",
+          description: "Please enter valid numeric values for latitude and longitude.",
+          variant: "destructive",
+        });
+        setIsLoading(false);
+        return;
+      }
+      
+      const res = await assessFloodRisk({
+        ...values,
+        latitude: numericLatitude,
+        longitude: numericLongitude,
+      });
       setResult(res);
     } catch (error) {
       console.error(error);
@@ -110,7 +132,7 @@ export function FloodRiskAssessment() {
                   <FormItem>
                     <FormLabel>Latitude</FormLabel>
                     <FormControl>
-                      <Input type="number" step="any" placeholder="e.g., 28.6139° N" {...field} />
+                      <Input placeholder="e.g., 28.6139° N" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -123,7 +145,7 @@ export function FloodRiskAssessment() {
                   <FormItem>
                     <FormLabel>Longitude</FormLabel>
                     <FormControl>
-                      <Input type="number" step="any" placeholder="e.g., 77.2090° E" {...field} />
+                      <Input placeholder="e.g., 77.2090° E" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
