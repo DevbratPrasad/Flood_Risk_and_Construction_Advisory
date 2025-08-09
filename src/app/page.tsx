@@ -27,19 +27,12 @@ export default function LandingPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground">
       <div className="text-center p-4">
-        <span className="text-6xl mx-auto mb-4">🌊</span>
-        <h1 className="text-4xl md:text-5xl font-bold mb-2 text-foreground">
-          Flood Risk & Construction Advisory
-        </h1>
-        <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-          Your guide to flood safety and resilient construction.
-        </p>
-        <Link
+        <Link 
           href="/dashboard"
           onClick={handleClick}
-          className="inline-block relative overflow-hidden px-8 py-3 rounded-lg bg-primary text-primary-foreground text-lg font-semibold shadow-md transition-all duration-300 hover:bg-primary/90 hover:scale-105 active:scale-100"
+          className="relative inline-block transition-transform duration-300 ease-in-out transform hover:scale-110"
         >
-          Enter
+          <span className="text-9xl">🌊</span>
         </Link>
       </div>
     </div>
