@@ -93,9 +93,9 @@ export function EmergencyAlerts() {
   };
 
   return (
-    <Card className="border-accent/50 bg-accent/5 transition-transform duration-200 hover:scale-105 hover:shadow-lg">
+    <Card className="border-destructive/50 bg-destructive/5 transition-transform duration-200 hover:scale-105 hover:shadow-lg">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-accent">
+        <CardTitle className="flex items-center gap-2 text-destructive">
           <AlertTriangle />
           Emergency Alerts
         </CardTitle>
