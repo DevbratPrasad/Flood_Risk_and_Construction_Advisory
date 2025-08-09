@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from './ui/button';
 
-const initialAlerts = [
+const allAlerts = [
   {
     id: 1,
     title: "Heavy Rainfall Warning",
@@ -31,19 +31,63 @@ const initialAlerts = [
     time: "6 hours ago",
     details: "Widespread waterlogging reported. Commuters are advised to stay indoors. Emergency services are active.",
   },
+  {
+    id: 4,
+    title: "Coastal Flood Watch",
+    area: "Kolkata, West Bengal",
+    severity: "Medium",
+    time: "8 hours ago",
+    details: "High tides and strong winds may lead to coastal flooding. Secure property and stay informed.",
+  },
+  {
+    id: 5,
+    title: "Flash Flood Warning",
+    area: "Uttarakhand",
+    severity: "High",
+    time: "2 hours ago",
+    details: "Flash floods are imminent or occurring. Move to higher ground immediately.",
+  },
+  {
+    id: 6,
+    title: "Low-Lying Area Alert",
+    area: "Patna, Bihar",
+    severity: "Low",
+    time: "12 hours ago",
+    details: "Minor waterlogging possible in low-lying areas. Monitor the situation.",
+  },
+  {
+    id: 7,
+    title: "Dam Water Release",
+    area: "Mettur, Tamil Nadu",
+    severity: "Medium",
+    time: "5 hours ago",
+    details: "Water will be released from the Mettur Dam. People in downstream areas are advised to be cautious.",
+  },
+  {
+    id: 8,
+    title: "Cyclone Alert",
+    area: "Odisha Coast",
+    severity: "High",
+    time: "1 hour ago",
+    details: "A cyclone is approaching the coast. Evacuation orders are in effect for coastal districts.",
+  }
 ];
 
+const getRandomAlerts = () => {
+    const shuffled = [...allAlerts].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 3);
+};
+
+
 export function EmergencyAlerts() {
-  const [alerts, setAlerts] = React.useState(initialAlerts);
+  const [alerts, setAlerts] = React.useState(getRandomAlerts());
   const [isRefreshing, setIsRefreshing] = React.useState(false);
 
   const handleRefresh = () => {
     setIsRefreshing(true);
     // Simulate fetching new alerts
     setTimeout(() => {
-      // Here you would fetch new data. For now, we'll just reset the state.
-      // To show a change, we can shuffle the alerts.
-      setAlerts([...alerts].sort(() => Math.random() - 0.5));
+      setAlerts(getRandomAlerts());
       setIsRefreshing(false);
     }, 1000);
   };
