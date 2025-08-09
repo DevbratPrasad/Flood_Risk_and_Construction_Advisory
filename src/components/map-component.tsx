@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { APIProvider, Map, AdvancedMarker, Pin, InfoWindow } from '@vis.gl/react-google-maps';
 import { Droplet } from 'lucide-react';
+import Image from 'next/image';
 
 const locations = [
   { lat: 29.9511, lng: -90.0715, name: 'Mississippi River', level: 'high' },
@@ -26,11 +27,18 @@ export const MapComponent = () => {
   if (!API_KEY || API_KEY === 'YOUR_GOOGLE_MAPS_API_KEY') {
     return (
       <div className="flex h-full w-full items-center justify-center rounded-lg bg-muted text-center p-4">
-        <div>
-          <p className="text-lg font-semibold">Map Unavailable</p>
-          <p className="text-sm text-muted-foreground">
-            Please provide a Google Maps API key in your environment variables (NEXT_PUBLIC_GOOGLE_MAPS_API_KEY) to enable this feature.
+        <div className="text-center">
+          <p className="mb-2">Map Unavailable</p>
+          <p className="text-xs text-muted-foreground">
+            To enable the map, please provide your Google Maps API key in a
+            <code className="mx-1 rounded bg-muted-foreground/20 px-1 py-0.5 text-xs">
+              .env.local
+            </code>
+            file:
           </p>
+          <pre className="mt-2 rounded-md bg-muted-foreground/20 p-2 text-left text-xs">
+            <code>NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=YOUR_API_KEY</code>
+          </pre>
         </div>
       </div>
     );
