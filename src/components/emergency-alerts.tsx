@@ -7,17 +7,24 @@ import { Badge } from "./ui/badge";
 const alerts = [
   {
     id: 1,
-    title: "Flood Warning: Willow Creek",
-    area: "North Valley",
+    title: "Heavy Rainfall Warning",
+    area: "Mumbai, Maharashtra",
     severity: "High",
-    time: "2 hours ago",
+    time: "3 hours ago",
   },
   {
     id: 2,
-    title: "Coastal Flood Advisory",
-    area: "Seaside Town",
+    title: "River Swelling Advisory",
+    area: "Brahmaputra, Assam",
     severity: "Medium",
-    time: "8 hours ago",
+    time: "1 day ago",
+  },
+  {
+    id: 3,
+    title: "Urban Flood Alert",
+    area: "Chennai, Tamil Nadu",
+    severity: "High",
+    time: "6 hours ago",
   },
 ];
 
