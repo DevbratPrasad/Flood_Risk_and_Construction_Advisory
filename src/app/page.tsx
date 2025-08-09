@@ -6,6 +6,11 @@ export default function LandingPage() {
 
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const link = event.currentTarget;
+    // The ripple effect needs a container with position: relative or similar.
+    // The link itself needs overflow: hidden.
+    link.style.position = 'relative';
+    link.style.overflow = 'hidden';
+
     const ripple = document.createElement("span");
     const rect = link.getBoundingClientRect();
     const size = Math.max(rect.width, rect.height);
@@ -17,9 +22,7 @@ export default function LandingPage() {
     ripple.style.top = `${y}px`;
     ripple.className = 'ripple';
 
-    // Ensure the ripple is appended to a child of the link, or the link itself if it has no children.
-    const container = link.querySelector('div') || link;
-    container.appendChild(ripple);
+    link.appendChild(ripple);
 
     ripple.onanimationend = () => {
       ripple.remove();
@@ -39,11 +42,9 @@ export default function LandingPage() {
         <Link 
           href="/dashboard"
           onClick={handleClick}
-          className="relative inline-block mt-8 overflow-hidden rounded-lg"
+          className="inline-block mt-8 px-10 py-4 bg-secondary text-secondary-foreground rounded-lg text-2xl font-bold hover:bg-secondary/80 active:bg-white active:text-black transition-all duration-300 ease-in-out hover:scale-110 shadow-lg"
         >
-          <div className="px-10 py-4 bg-secondary text-secondary-foreground rounded-lg text-2xl font-bold hover:bg-secondary/80 active:bg-white active:text-black transition-all duration-300 ease-in-out hover:scale-110 shadow-lg">
-            Enter
-          </div>
+          Enter
         </Link>
       </div>
     </div>
