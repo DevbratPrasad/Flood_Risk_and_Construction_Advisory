@@ -1,6 +1,7 @@
 
 "use client";
 
+import * as React from 'react';
 import { Cloudy, Sun, CloudRain } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -10,11 +11,25 @@ const weatherConditions = [
     { icon: <CloudRain className="w-12 h-12 text-blue-400" />, temp: "20°C", condition: "Rainy" },
 ];
 
-// To prevent hydration errors, we'll cycle through the weather conditions on the client-side.
-// This is a simple example and for a real app, you would fetch this data from an API.
-const currentWeather = weatherConditions[0];
-
 export function WeatherCard() {
+  const [currentWeather, setCurrentWeather] = React.useState(weatherConditions[0]);
+  const [isClient, setIsClient] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsClient(true);
+    const interval = setInterval(() => {
+      setCurrentWeather(prev => {
+        const currentIndex = weatherConditions.findIndex(c => c.condition === prev.condition);
+        const nextIndex = (currentIndex + 1) % weatherConditions.length;
+        return weatherConditions[nextIndex];
+      });
+    }, 5000); // Change weather every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const displayWeather = isClient ? currentWeather : weatherConditions[0];
+
   return (
     <Card>
       <CardHeader>
@@ -27,11 +42,11 @@ export function WeatherCard() {
       <CardContent>
         <div className="flex items-center justify-between gap-4">
             <div className="flex flex-col">
-                <span className="text-4xl font-bold">{currentWeather.temp}</span>
-                <span className="text-muted-foreground">{currentWeather.condition}</span>
+                <span className="text-4xl font-bold">{displayWeather.temp}</span>
+                <span className="text-muted-foreground">{displayWeather.condition}</span>
             </div>
             <div>
-                {currentWeather.icon}
+                {displayWeather.icon}
             </div>
         </div>
       </CardContent>
