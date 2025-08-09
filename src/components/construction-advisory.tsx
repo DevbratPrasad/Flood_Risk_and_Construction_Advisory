@@ -74,7 +74,7 @@ export function ConstructionAdvisory() {
                 <FormItem>
                   <FormLabel>Project Location</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g., New Orleans, LA" {...field} />
+                    <Input placeholder="e.g., Mumbai, Maharashtra" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -122,7 +122,7 @@ export function ConstructionAdvisory() {
                 <FormItem>
                   <FormLabel>Budget</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g., Moderate, $200,000" {...field} />
+                    <Input placeholder="e.g., Moderate, ₹1,50,00,000" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
