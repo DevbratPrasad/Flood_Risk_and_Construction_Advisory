@@ -73,7 +73,7 @@ export function EmergencyAlerts() {
           ))}
         </div>
         <div className="mt-6 flex justify-center">
-            <Button variant="outline" onClick={handleRefresh} disabled={isRefreshing}>
+            <Button variant="outline" onClick={handleRefresh} disabled={isRefreshing} className="transition-transform duration-200 hover:scale-105">
                 {isRefreshing ? (
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 ) : (
