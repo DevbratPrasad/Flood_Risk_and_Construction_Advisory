@@ -29,6 +29,7 @@ export default function LandingPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-blue-200 text-foreground p-4">
       <div className="text-center bg-card/80 backdrop-blur-sm p-10 rounded-xl shadow-2xl border">
+        <div className="text-6xl mb-4">🌊</div>
         <h1 className="text-4xl md:text-6xl font-extrabold text-primary tracking-tight">
           Flood Risk & Construction Advisory
         </h1>
