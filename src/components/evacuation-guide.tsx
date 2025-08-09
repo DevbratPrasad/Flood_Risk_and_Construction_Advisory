@@ -48,6 +48,18 @@ const evacuationData = [
   },
 ];
 
+const SearchSection = () => (
+    <div className="mt-6 pt-4 border-t">
+        <h3 className="text-md font-semibold mb-2">Can we help with something more?</h3>
+        <div className="flex w-full max-w-sm items-center space-x-2">
+            <Input type="text" placeholder="Search for more information..." />
+            <Button type="submit" size="icon">
+                <Search className="h-4 w-4" />
+            </Button>
+        </div>
+    </div>
+);
+
 export function EvacuationGuide() {
   const [openSection, setOpenSection] = React.useState<string | null>("before");
 
@@ -85,19 +97,11 @@ export function EvacuationGuide() {
                       <li key={index}>{point}</li>
                     ))}
                   </ul>
+                  <SearchSection />
                 </div>
               </CollapsibleContent>
             </Collapsible>
           ))}
-        </div>
-        <div className="mt-8 pt-6 border-t">
-            <h3 className="text-lg font-semibold mb-2">Can we help with something more?</h3>
-            <div className="flex w-full max-w-sm items-center space-x-2">
-                <Input type="text" placeholder="Search for more information..." />
-                <Button type="submit" size="icon">
-                    <Search className="h-4 w-4" />
-                </Button>
-            </div>
         </div>
       </CardContent>
     </Card>
