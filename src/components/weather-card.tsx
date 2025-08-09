@@ -75,7 +75,7 @@ export function WeatherCard() {
 
   if (!isClient) {
     return (
-        <Card className="border-primary/50 bg-primary/5 transition-transform duration-200 hover:scale-105 hover:shadow-lg">
+        <Card className="transition-transform duration-200 hover:scale-105 hover:shadow-lg border-primary/50 bg-primary/5">
             <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                     <Cloudy /> Weather
@@ -85,7 +85,7 @@ export function WeatherCard() {
             <CardContent className="space-y-6 animate-pulse">
                 <div className="h-24 rounded-lg bg-card/50" />
                 <Separator />
-                <div className="h-28 rounded-lg bg-blue-400" />
+                <div className="h-28 rounded-lg bg-blue-300/50" />
             </CardContent>
         </Card>
     );
@@ -105,7 +105,7 @@ export function WeatherCard() {
   }
 
   return (
-    <Card className="border-primary/50 bg-primary/5 transition-transform duration-200 hover:scale-105 hover:shadow-lg">
+    <Card className="transition-transform duration-200 hover:scale-105 hover:shadow-lg border-primary/50 bg-primary/5">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Cloudy />
@@ -159,7 +159,7 @@ export function WeatherCard() {
         
         <Dialog>
             <DialogTrigger asChild>
-                <div className="p-4 rounded-lg bg-blue-400 transition-transform duration-200 hover:scale-105 cursor-pointer">
+                <div className="p-4 rounded-lg bg-blue-500 transition-transform duration-200 hover:scale-105 cursor-pointer">
                     <h4 className="text-sm font-semibold text-primary-foreground mb-4">Hourly Forecast</h4>
                     <div className="flex justify-between gap-2 text-primary-foreground">
                         {displayWeather.hourly.slice(0, 4).map((hour, index) => (
@@ -189,10 +189,13 @@ export function WeatherCard() {
         </Dialog>
 
         <div className="flex justify-center">
-            <Button variant="outline" className="w-full transition-transform duration-200 hover:scale-105">
+            <Button variant="destructive" className="w-full transition-transform duration-200 hover:scale-105">
                 <AlertTriangle className="mr-2 h-4 w-4" />
                 <span>Flood Threat:</span>
-                <Badge variant={getThreatBadgeVariant(displayWeather.floodThreat)} className="ml-2">
+                <Badge
+                  variant={getThreatBadgeVariant(displayWeather.floodThreat)}
+                  className="ml-2 bg-white/20 text-destructive-foreground"
+                >
                   {displayWeather.floodThreat}
                 </Badge>
             </Button>
