@@ -2,7 +2,7 @@
 "use client";
 
 import * as React from "react";
-import { LifeBuoy, ChevronDown, Search } from "lucide-react";
+import { Heart, ChevronDown, Search } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -93,7 +93,7 @@ export function EvacuationGuide() {
     <Card className="transition-transform duration-200 hover:scale-105 hover:shadow-lg">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <LifeBuoy />
+          <Heart />
           Evacuation Protocol Guide
         </CardTitle>
         <CardDescription>Easy to understand guidelines on evacuation protocols for flood safety.</CardDescription>
