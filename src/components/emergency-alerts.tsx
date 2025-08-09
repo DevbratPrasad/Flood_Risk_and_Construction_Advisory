@@ -93,7 +93,7 @@ export function EmergencyAlerts() {
   };
 
   return (
-    <Card className="border-accent/50 bg-accent/5">
+    <Card className="border-accent/50 bg-accent/5 transition-transform duration-200 hover:scale-105 hover:shadow-lg">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-accent">
           <AlertTriangle />

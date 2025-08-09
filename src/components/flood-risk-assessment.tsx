@@ -78,7 +78,7 @@ export function FloodRiskAssessment() {
   }
 
   return (
-    <Card>
+    <Card className="transition-transform duration-200 hover:scale-105 hover:shadow-lg">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <ShieldCheck />
