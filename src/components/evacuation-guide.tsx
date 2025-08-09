@@ -1,11 +1,12 @@
-import { BookOpen } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+
+"use client";
+
+import * as React from "react";
+import { BookOpen, ChevronDown } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { cn } from "@/lib/utils";
 
 const evacuationData = [
   {
@@ -47,6 +48,8 @@ const evacuationData = [
 ];
 
 export function EvacuationGuide() {
+  const [openSection, setOpenSection] = React.useState<string | null>("before");
+
   return (
     <Card>
       <CardHeader>
@@ -57,20 +60,34 @@ export function EvacuationGuide() {
         <CardDescription>Easy to understand guidelines on evacuation protocols for flood safety.</CardDescription>
       </CardHeader>
       <CardContent>
-        <Accordion type="single" collapsible defaultValue="before" className="w-full">
+        <div className="space-y-2">
           {evacuationData.map((item) => (
-            <AccordionItem value={item.id} key={item.id}>
-              <AccordionTrigger className="text-lg font-semibold">{item.title}</AccordionTrigger>
-              <AccordionContent>
-                <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                  {item.content.map((point, index) => (
-                    <li key={index}>{point}</li>
-                  ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
+            <Collapsible
+              key={item.id}
+              open={openSection === item.id}
+              onOpenChange={(isOpen) => setOpenSection(isOpen ? item.id : null)}
+            >
+              <CollapsibleTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="w-full justify-between text-lg font-semibold transition-transform duration-200 hover:scale-105"
+                >
+                  {item.title}
+                  <ChevronDown className={cn("h-5 w-5 transition-transform", openSection === item.id && "rotate-180")} />
+                </Button>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <div className="p-4 mt-2 border rounded-md bg-muted/50">
+                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+                    {item.content.map((point, index) => (
+                      <li key={index}>{point}</li>
+                    ))}
+                  </ul>
+                </div>
+              </CollapsibleContent>
+            </Collapsible>
           ))}
-        </Accordion>
+        </div>
       </CardContent>
     </Card>
   );
