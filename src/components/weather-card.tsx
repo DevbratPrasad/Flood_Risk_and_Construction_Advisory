@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Cloudy, Sun, CloudRain } from "lucide-react";
@@ -12,14 +13,6 @@ const weatherConditions = [
 
 export function WeatherCard() {
     const [currentWeather, setCurrentWeather] = useState(weatherConditions[0]);
-
-    useEffect(() => {
-      const interval = setInterval(() => {
-          setCurrentWeather(weatherConditions[Math.floor(Math.random() * weatherConditions.length)]);
-      }, 5000); // Change weather every 5 seconds for demo
-
-      return () => clearInterval(interval);
-    }, []);
 
   return (
     <Card>
