@@ -17,7 +17,9 @@ export default function LandingPage() {
     ripple.style.top = `${y}px`;
     ripple.className = 'ripple';
 
-    link.appendChild(ripple);
+    // Ensure the ripple is appended to a child of the link, or the link itself if it has no children.
+    const container = link.querySelector('div') || link;
+    container.appendChild(ripple);
 
     ripple.onanimationend = () => {
       ripple.remove();
@@ -25,12 +27,22 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground">
-      <div className="text-center p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-blue-200 text-foreground p-4">
+      <div className="text-center bg-card/80 backdrop-blur-sm p-10 rounded-xl shadow-2xl border">
+        <h1 className="text-4xl md:text-6xl font-extrabold text-primary tracking-tight">
+          Flood Risk & Construction Advisory
+        </h1>
+        <p className="mt-4 text-lg text-muted-foreground">
+          Your comprehensive guide to flood safety and resilient building.
+        </p>
         <Link 
           href="/dashboard"
+          onClick={handleClick}
+          className="relative inline-block mt-8 overflow-hidden"
         >
-          <span className="text-9xl">🌊</span>
+          <div className="px-10 py-4 bg-primary text-primary-foreground rounded-lg text-2xl font-bold hover:bg-primary/90 transition-transform duration-300 ease-in-out hover:scale-110 shadow-lg">
+            Enter
+          </div>
         </Link>
       </div>
     </div>
