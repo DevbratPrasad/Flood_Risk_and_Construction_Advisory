@@ -11,19 +11,15 @@ const weatherConditions = [
 ];
 
 export function WeatherCard() {
-    const [currentWeatherIndex, setCurrentWeatherIndex] = useState(0);
-    const [isClient, setIsClient] = useState(false);
+    const [currentWeather, setCurrentWeather] = useState(weatherConditions[0]);
 
     useEffect(() => {
-      setIsClient(true);
       const interval = setInterval(() => {
-          setCurrentWeatherIndex(prevIndex => (prevIndex + 1) % weatherConditions.length);
+          setCurrentWeather(weatherConditions[Math.floor(Math.random() * weatherConditions.length)]);
       }, 5000); // Change weather every 5 seconds for demo
 
       return () => clearInterval(interval);
     }, []);
-
-    const currentWeather = weatherConditions[currentWeatherIndex];
 
   return (
     <Card>
@@ -37,20 +33,11 @@ export function WeatherCard() {
       <CardContent>
         <div className="flex items-center justify-between gap-4">
             <div className="flex flex-col">
-                {isClient ? (
-                    <>
-                        <span className="text-4xl font-bold">{currentWeather.temp}</span>
-                        <span className="text-muted-foreground">{currentWeather.condition}</span>
-                    </>
-                ) : (
-                    <>
-                        <span className="text-4xl font-bold">{weatherConditions[0].temp}</span>
-                        <span className="text-muted-foreground">{weatherConditions[0].condition}</span>
-                    </>
-                )}
+                <span className="text-4xl font-bold">{currentWeather.temp}</span>
+                <span className="text-muted-foreground">{currentWeather.condition}</span>
             </div>
             <div>
-                {isClient ? currentWeather.icon : weatherConditions[0].icon}
+                {currentWeather.icon}
             </div>
         </div>
       </CardContent>
