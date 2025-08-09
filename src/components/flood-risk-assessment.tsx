@@ -110,7 +110,7 @@ export function FloodRiskAssessment() {
                   <FormItem>
                     <FormLabel>Latitude</FormLabel>
                     <FormControl>
-                      <Input type="number" step="any" placeholder="e.g., 12.9716" {...field} />
+                      <Input type="number" step="any" placeholder="e.g., 28.6139° N" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -123,7 +123,7 @@ export function FloodRiskAssessment() {
                   <FormItem>
                     <FormLabel>Longitude</FormLabel>
                     <FormControl>
-                      <Input type="number" step="any" placeholder="e.g., 77.5946" {...field} />
+                      <Input type="number" step="any" placeholder="e.g., 77.2090° E" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
