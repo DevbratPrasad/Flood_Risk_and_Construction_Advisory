@@ -2,10 +2,12 @@
 "use client";
 
 import * as React from 'react';
-import { Cloudy, Sun, CloudRain, Droplet, Wind } from "lucide-react";
+import { Cloudy, Sun, CloudRain, Droplet, Wind, AlertTriangle } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Separator } from './ui/separator';
+import { Button } from './ui/button';
+import { Badge } from './ui/badge';
 
 const weatherConditions = [
     {
@@ -14,6 +16,7 @@ const weatherConditions = [
         condition: "Sunny",
         humidity: "45%",
         wind: "10 km/h",
+        floodThreat: "Low",
         hourly: [
             { time: "1 PM", icon: <Sun className="w-8 h-8 text-yellow-300" />, temp: "29°C" },
             { time: "2 PM", icon: <Sun className="w-8 h-8 text-yellow-300" />, temp: "30°C" },
@@ -29,6 +32,7 @@ const weatherConditions = [
         condition: "Cloudy",
         humidity: "60%",
         wind: "15 km/h",
+        floodThreat: "Medium",
         hourly: [
             { time: "1 PM", icon: <Cloudy className="w-8 h-8 text-gray-300" />, temp: "25°C" },
             { time: "2 PM", icon: <Cloudy className="w-8 h-8 text-gray-300" />, temp: "25°C" },
@@ -44,6 +48,7 @@ const weatherConditions = [
         condition: "Rainy",
         humidity: "85%",
         wind: "20 km/h",
+        floodThreat: "High",
         hourly: [
             { time: "1 PM", icon: <CloudRain className="w-8 h-8 text-blue-300" />, temp: "21°C" },
             { time: "2 PM", icon: <CloudRain className="w-8 h-8 text-blue-300" />, temp: "21°C" },
@@ -80,13 +85,24 @@ export function WeatherCard() {
             <CardContent className="space-y-6 animate-pulse">
                 <div className="h-24 rounded-lg bg-card/50" />
                 <Separator />
-                <div className="h-28 rounded-lg bg-blue-500" />
+                <div className="h-28 rounded-lg bg-blue-400" />
             </CardContent>
         </Card>
     );
   }
 
   const displayWeather = weatherConditions[currentWeatherIndex];
+
+  const getThreatBadgeVariant = (threatLevel: string) => {
+    switch (threatLevel.toLowerCase()) {
+      case 'high':
+        return 'destructive';
+      case 'medium':
+        return 'secondary';
+      default:
+        return 'default';
+    }
+  }
 
   return (
     <Card className="border-primary/50 bg-primary/5 transition-transform duration-200 hover:scale-105 hover:shadow-lg">
@@ -143,7 +159,7 @@ export function WeatherCard() {
         
         <Dialog>
             <DialogTrigger asChild>
-                <div className="p-4 rounded-lg bg-blue-500 transition-transform duration-200 hover:scale-105 cursor-pointer">
+                <div className="p-4 rounded-lg bg-blue-400 transition-transform duration-200 hover:scale-105 cursor-pointer">
                     <h4 className="text-sm font-semibold text-primary-foreground mb-4">Hourly Forecast</h4>
                     <div className="flex justify-between gap-2 text-primary-foreground">
                         {displayWeather.hourly.slice(0, 4).map((hour, index) => (
@@ -171,6 +187,17 @@ export function WeatherCard() {
                 </div>
             </DialogContent>
         </Dialog>
+
+        <div className="flex justify-center">
+            <Button variant="outline" className="w-full transition-transform duration-200 hover:scale-105">
+                <AlertTriangle className="mr-2 h-4 w-4" />
+                <span>Flood Threat:</span>
+                <Badge variant={getThreatBadgeVariant(displayWeather.floodThreat)} className="ml-2">
+                  {displayWeather.floodThreat}
+                </Badge>
+            </Button>
+        </div>
+
       </CardContent>
     </Card>
   );
