@@ -2,11 +2,12 @@
 "use client";
 
 import * as React from "react";
-import { BookOpen, ChevronDown } from "lucide-react";
+import { BookOpen, ChevronDown, Search } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { cn } from "@/lib/utils";
+import { Input } from "./ui/input";
 
 const evacuationData = [
   {
@@ -66,11 +67,12 @@ export function EvacuationGuide() {
               key={item.id}
               open={openSection === item.id}
               onOpenChange={(isOpen) => setOpenSection(isOpen ? item.id : null)}
+              className="transition-transform duration-200 hover:scale-105"
             >
               <CollapsibleTrigger asChild>
                 <Button
                   variant="outline"
-                  className="w-full justify-between text-lg font-semibold transition-transform duration-200 hover:scale-105"
+                  className="w-full justify-between text-lg font-semibold"
                 >
                   {item.title}
                   <ChevronDown className={cn("h-5 w-5 transition-transform", openSection === item.id && "rotate-180")} />
@@ -87,6 +89,15 @@ export function EvacuationGuide() {
               </CollapsibleContent>
             </Collapsible>
           ))}
+        </div>
+        <div className="mt-8 pt-6 border-t">
+            <h3 className="text-lg font-semibold mb-2">Can we help with something more?</h3>
+            <div className="flex w-full max-w-sm items-center space-x-2">
+                <Input type="text" placeholder="Search for more information..." />
+                <Button type="submit" size="icon">
+                    <Search className="h-4 w-4" />
+                </Button>
+            </div>
         </div>
       </CardContent>
     </Card>
