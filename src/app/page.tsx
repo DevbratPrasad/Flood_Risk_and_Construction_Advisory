@@ -29,8 +29,6 @@ export default function LandingPage() {
       <div className="text-center p-4">
         <Link 
           href="/dashboard"
-          onClick={handleClick}
-          className="relative inline-block transition-transform duration-300 ease-in-out transform hover:scale-110"
         >
           <span className="text-9xl">🌊</span>
         </Link>
