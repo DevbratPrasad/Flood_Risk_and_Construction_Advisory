@@ -79,7 +79,7 @@ export function WeatherCard() {
             {displayWeather.icon}
         </div>
         <Separator />
-        <div className="p-4 rounded-lg bg-secondary transition-transform duration-200 hover:scale-105">
+        <div className="p-4 rounded-lg bg-blue-100 transition-transform duration-200 hover:scale-105">
             <h4 className="text-sm font-semibold text-muted-foreground mb-4">Hourly Forecast</h4>
             <div className="flex justify-between gap-2">
                 {displayWeather.hourly.map((hour, index) => (
